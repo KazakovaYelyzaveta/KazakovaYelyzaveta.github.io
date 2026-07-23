@@ -180,18 +180,6 @@ nextBtn.addEventListener("click", () => {
 
 updateCertificateSlider();
 
-document.querySelectorAll(".faq-question").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const item = btn.parentElement;
-
-    document.querySelectorAll(".faq-item").forEach((faq) => {
-      if (faq !== item) faq.classList.remove("active");
-    });
-
-    item.classList.toggle("active");
-  });
-});
-
 document.querySelectorAll(".about-section__read-more").forEach((button) => {
   const contentId = button.getAttribute("aria-controls");
   const content = document.getElementById(contentId);
@@ -233,3 +221,16 @@ document.querySelectorAll(".faq-question").forEach((button) => {
     }
   });
 });
+
+function handleHeaderScroll() {
+  if (!header) return;
+
+  if (window.scrollY > 20) {
+    header.classList.add("is-scrolled");
+  } else {
+    header.classList.remove("is-scrolled");
+  }
+}
+
+window.addEventListener("scroll", handleHeaderScroll, { passive: true });
+handleHeaderScroll();
